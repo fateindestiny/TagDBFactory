@@ -2,7 +2,7 @@
 The TagDBManager help for make database manager module by the SQLite base. This library can make database table by the Object class.
 
 ## Download
-
+* **[TagDBManager-0.1.0.jar](https://github.com/fateindestiny/TagDBManager/blob/master/download/TagDBManager-0.1.0.jar)**
 
 ## Usage
 ### Make the database infomation class
@@ -118,7 +118,7 @@ class FIDDBManager extends TagDBManager {
     FIDDBManager() {
     }
 
-	/**
+    /**
     * insert test sample method
     */
     public void insertTest(TagDBInfo dbInfo, String tableName, ContentValues values) {
