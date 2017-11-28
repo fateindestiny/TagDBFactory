@@ -17,6 +17,7 @@ public class TestDBInfo extends TagDBInfo {
 
 ### Make the table information class
 The making database table need the table information class. This class make in the database information. And to do next list.
+**The table name field must be static.**
 
 1. Add the `@TagTable` annotation in the table class.
 2. Add the `@TagTableName` in the table name string field.
@@ -41,6 +42,7 @@ public class DB_TABLE_0 implements BaseColumns {
 
 ### Make the column field
 Column infomation field make in the table information class. And add the `@TagColumn` annotation on column information field. `@TagColumn` can add properties. The properties is next list.
+**The column name field must be static.**
 
 - **type**
 This property is this column's data type. This can set in TEXT, INTEGER, BLOB, REAL and NUMERIC. Default value is TEXT.
