@@ -172,7 +172,7 @@ public abstract class TagDBManager {
                             TagColumn annotation = field.getAnnotation(TagColumn.class);
 
                             columnBuilder.setLength(0);
-                            columnBuilder.append((String) field.get(tagDbInfo));
+                            columnBuilder.append(field.get(tagDbInfo));
                             columnBuilder.append(" ");
                             columnBuilder.append(annotation.type());
 
@@ -199,6 +199,10 @@ public abstract class TagDBManager {
 
                             columnList.add(columnBuilder.toString());
                         }
+                    }
+
+                    if(TextUtils.isEmpty(tableNm)) {
+                        throw new Exception("Table name is empty.");
                     }
 
                     queryBuilder.append("CREATE TABLE ");
