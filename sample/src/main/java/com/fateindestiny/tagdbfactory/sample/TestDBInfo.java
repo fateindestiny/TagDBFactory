@@ -13,16 +13,16 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  ****************************************************************************************************/
-package com.fateindestiny.tagdbmanager.sample;
+package com.fateindestiny.tagdbfactory.sample;
 
 import android.provider.BaseColumns;
 import android.support.annotation.NonNull;
 
-import com.fateindestiny.tagdbmanager.TagColumn;
-import com.fateindestiny.tagdbmanager.TagDBInfo;
-import com.fateindestiny.tagdbmanager.TagDBManager;
-import com.fateindestiny.tagdbmanager.TagTable;
-import com.fateindestiny.tagdbmanager.TagTableName;
+import com.fateindestiny.tagdbfactory.TagColumn;
+import com.fateindestiny.tagdbfactory.TagDBInfo;
+import com.fateindestiny.tagdbfactory.TagDBFactory;
+import com.fateindestiny.tagdbfactory.TagTable;
+import com.fateindestiny.tagdbfactory.TagTableName;
 
 /**
  * @author FateInDestiny on 2017-05-26.
@@ -38,9 +38,9 @@ public class TestDBInfo extends TagDBInfo {
         public static final String NAME = "tb_test_0";
 
 
-        @TagColumn(type = TagDBManager.COLUMN_TYPE.TEXT, hasNotNull = true)
+        @TagColumn(type = TagDBFactory.COLUMN_TYPE.TEXT, hasNotNull = true)
         public static final String COLUMN_0 = "column_0";
-        @TagColumn(type = TagDBManager.COLUMN_TYPE.INTEGER, defaultValue = "1")
+        @TagColumn(type = TagDBFactory.COLUMN_TYPE.INTEGER, defaultValue = "1")
         public static final String COLUMN_1 = "column_1";
         @TagColumn
         public static final String COLUMN_2 = "column_2";

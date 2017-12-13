@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  ****************************************************************************************************/
-package com.fateindestiny.tagdbmanager;
+package com.fateindestiny.tagdbfactory;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -21,11 +21,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation can tag when table name define.
+ * This annotation can tag when table define.
  *
  * @author FateInDestiny on 2017-05-26.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface TagTableName {
-}// end of interface TagTableName
+@Target(ElementType.TYPE)
+public @interface TagTable {
+}// end of interface TagTable

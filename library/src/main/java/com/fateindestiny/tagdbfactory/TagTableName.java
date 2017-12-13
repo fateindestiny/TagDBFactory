@@ -9,11 +9,11 @@
  *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
-*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-*   See the License for the specific language governing permissions and
-*   limitations under the License.
-****************************************************************************************************/
-package com.fateindestiny.tagdbmanager;
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ ****************************************************************************************************/
+package com.fateindestiny.tagdbfactory;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -21,17 +21,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation can tag when column define.
+ * This annotation can tag when table name define.
  *
  * @author FateInDestiny on 2017-05-26.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface TagColumn {
-    TagDBManager.COLUMN_TYPE type() default TagDBManager.COLUMN_TYPE.TEXT;
-    boolean isPrimaryKey() default false;
-    boolean isAutoIncrement() default false;
-    boolean isUnique() default false;
-    boolean hasNotNull() default false;
-    String defaultValue() default "";
-}// end of interface TagColumn
+public @interface TagTableName {
+}// end of interface TagTableName

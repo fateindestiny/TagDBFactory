@@ -27,7 +27,7 @@ task exportJar(type: Copy) {
     into('release/')
     include('classes.jar')
     ///Give whatever name you want to give
-    rename('classes.jar', 'TagDBManager-' + android.defaultConfig.versionName +'.jar')
+    rename('classes.jar', 'TagDBFactory-' + android.defaultConfig.versionName +'.jar')
 }
 
 exportJar.dependsOn(deleteOldJar, build)

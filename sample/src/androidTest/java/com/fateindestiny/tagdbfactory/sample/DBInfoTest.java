@@ -1,4 +1,4 @@
-package com.fateindestiny.tagdbmanager.sample;
+package com.fateindestiny.tagdbfactory.sample;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.fateindestiny.tagdbmanager.*;
+import com.fateindestiny.tagdbfactory.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,7 +54,7 @@ public class DBInfoTest {
         dbManager.insertTest(dbInfo, values);
     }
 
-    class TestDBManager extends TagDBManager {
+    class TestDBManager extends TagDBFactory {
         void insertTest(TestDBInfo dbInfo, ContentValues values) {
             try {
                 SQLiteDatabase database = open(dbInfo);

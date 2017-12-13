@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  ****************************************************************************************************/
-package com.fateindestiny.tagdbmanager;
+package com.fateindestiny.tagdbfactory;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -21,7 +21,7 @@ import android.support.annotation.NonNull;
 /**
  * This class is database information class.
  * Basically extended this class.
- * This class has database file name, version and query event interface that use in {@link TagDBManager}.
+ * This class has database file name, version and query event interface that use in {@link TagDBFactory}.
  *
  * @author FateInDestiny on 2017-05-26.
  */
@@ -31,12 +31,12 @@ public abstract class TagDBInfo {
     private WorkQueryFunction mWorkQueryFunction;
 
     /**
-     * This interface call when table upgrade and downgrade in {@link TagDBManager.DBManagerHelper}.
+     * This interface call when table upgrade and downgrade in {@link TagDBFactory.DBOpenHelper}.
      */
     public interface WorkQueryFunction {
         /**
          * Called when table upgrade.
-         * This parameters receive from {@link TagDBManager.DBManagerHelper#onUpgrade(SQLiteDatabase, int, int)}.
+         * This parameters receive from {@link TagDBFactory.DBOpenHelper#onUpgrade(SQLiteDatabase, int, int)}.
          *
          * @param db
          * @param oldVersion
@@ -46,7 +46,7 @@ public abstract class TagDBInfo {
 
         /**
          * Called when table downgrade.
-         * This parameters receive from {@link TagDBManager.DBManagerHelper#onDowngrade(SQLiteDatabase, int, int)}.
+         * This parameters receive from {@link TagDBFactory.DBOpenHelper#onDowngrade(SQLiteDatabase, int, int)}.
          *
          * @param db
          * @param oldVersion

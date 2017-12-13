@@ -1,4 +1,4 @@
-package com.fateindestiny.tagdbmanager.sample;
+package com.fateindestiny.tagdbfactory.sample;
 
 import org.junit.Test;
 

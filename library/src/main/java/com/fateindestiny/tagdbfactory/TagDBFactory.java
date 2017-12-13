@@ -13,7 +13,7 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  ****************************************************************************************************/
-package com.fateindestiny.tagdbmanager;
+package com.fateindestiny.tagdbfactory;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,13 +26,13 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 /**
- * This class is SQLite database manager class.
+ * This class is SQLite database helper class.
  * Basically use extended this class.
  * Managing according to extended {@link TagDBInfo} object.
  *
  * @author FateInDestiny on 2017-05-26.
  */
-public abstract class TagDBManager {
+public abstract class TagDBFactory {
     public enum COLUMN_TYPE {
         TEXT,
         INTEGER,
@@ -42,7 +42,7 @@ public abstract class TagDBManager {
     }
 
     private Context mContext;
-    private ArrayList<DBManagerHelper> mDBManagerHelpers;
+    private ArrayList<DBOpenHelper> mDBOpenHelpers;
 
     /*****************************************************************************************************
      * Method
@@ -54,7 +54,7 @@ public abstract class TagDBManager {
      */
     public void initialize(@NonNull Context context) {
         mContext = context;
-        mDBManagerHelpers = new ArrayList<DBManagerHelper>();
+        mDBOpenHelpers = new ArrayList<DBOpenHelper>();
     }
 
     /**
@@ -62,7 +62,7 @@ public abstract class TagDBManager {
      *
      * @param tagDbInfo This parameter is target {@link TagDBInfo} for open database.
      * @return Return writable database obejct by parameter {@link TagDBInfo}.
-     * @throws Exception Throws if not call {@link TagDBManager#initialize(Context)}.
+     * @throws Exception Throws if not call {@link TagDBFactory#initialize(Context)}.
      */
     public SQLiteDatabase open(TagDBInfo tagDbInfo) throws Exception {
         if (mContext == null) {
@@ -73,20 +73,20 @@ public abstract class TagDBManager {
     }
 
     /**
-     * This is working find {@link DBManagerHelper} according to {@link TagDBInfo}.
+     * This is working find {@link DBOpenHelper} according to {@link TagDBInfo}.
      *
-     * @param tagDbInfo This parameter is condition for find {@link DBManagerHelper}.
-     * @return Return finded {@link DBManagerHelper}.
+     * @param tagDbInfo This parameter is condition for find {@link DBOpenHelper}.
+     * @return Return finded {@link DBOpenHelper}.
      */
-    private DBManagerHelper getDBManagerHelper(TagDBInfo tagDbInfo) {
-        DBManagerHelper result;
-        int index = mDBManagerHelpers.indexOf(tagDbInfo);
+    private DBOpenHelper getDBManagerHelper(TagDBInfo tagDbInfo) {
+        DBOpenHelper result;
+        int index = mDBOpenHelpers.indexOf(tagDbInfo);
 
         if (index > -1) {
-            result = mDBManagerHelpers.get(index);
+            result = mDBOpenHelpers.get(index);
         } else {
-            result = new DBManagerHelper(tagDbInfo, null);
-            mDBManagerHelpers.add(result);
+            result = new DBOpenHelper(tagDbInfo, null);
+            mDBOpenHelpers.add(result);
         }
         return result;
     }
@@ -98,9 +98,9 @@ public abstract class TagDBManager {
      * @return Return true if database open.
      */
     public boolean isOpen(TagDBInfo tagDbInfo) {
-        int index = mDBManagerHelpers.indexOf(tagDbInfo);
+        int index = mDBOpenHelpers.indexOf(tagDbInfo);
         if (index > -1) {
-            return mDBManagerHelpers.get(index).getWritableDatabase().isOpen();
+            return mDBOpenHelpers.get(index).getWritableDatabase().isOpen();
         } else {
             return false;
         }
@@ -111,16 +111,16 @@ public abstract class TagDBManager {
      *
      * @param tagDbInfo This parameter is target {@link TagDBInfo} for close database.
      * @return Return true if call close method.
-     * @throws Exception Throws if not call {@link TagDBManager#initialize(Context)}.
+     * @throws Exception Throws if not call {@link TagDBFactory#initialize(Context)}.
      */
     public boolean close(TagDBInfo tagDbInfo) throws Exception {
         if (mContext == null) {
             throw new NullPointerException("Context is null. Not initialized.");
         }
 
-        int index = mDBManagerHelpers.indexOf(tagDbInfo);
+        int index = mDBOpenHelpers.indexOf(tagDbInfo);
         if (index > -1) {
-            mDBManagerHelpers.get(index).close();
+            mDBOpenHelpers.get(index).close();
             return true;
         } else {
             return false;
@@ -176,7 +176,7 @@ public abstract class TagDBManager {
                             columnBuilder.append(" ");
                             columnBuilder.append(annotation.type());
 
-                            if (annotation.type() == TagDBManager.COLUMN_TYPE.TEXT && annotation.hasNotNull()) {
+                            if (annotation.type() == TagDBFactory.COLUMN_TYPE.TEXT && annotation.hasNotNull()) {
                                 columnBuilder.append(" NOT NULL");
                             }
 
@@ -235,16 +235,16 @@ public abstract class TagDBManager {
     /**
      * This is DB Helper class extended {@link SQLiteOpenHelper}.
      */
-    protected class DBManagerHelper extends SQLiteOpenHelper {
+    protected class DBOpenHelper extends SQLiteOpenHelper {
         private TagDBInfo mTagDBInfo;
 
-        public DBManagerHelper(TagDBInfo tagDbInfo, SQLiteDatabase.CursorFactory factory) {
+        public DBOpenHelper(TagDBInfo tagDbInfo, SQLiteDatabase.CursorFactory factory) {
             super(mContext, tagDbInfo.getDBFileName(), factory, tagDbInfo.getDBVersion());
             this.mTagDBInfo = tagDbInfo;
         }
 
         /**
-         * Create table by querys maked by {@link TagDBManager#generateCreateQuerys(TagDBInfo)}.
+         * Create table by querys maked by {@link TagDBFactory#generateCreateQuerys(TagDBInfo)}.
          *
          * @param db
          */
@@ -289,17 +289,17 @@ public abstract class TagDBManager {
         }
 
         /**
-         * This methd checked if the {@link DBManagerHelper} is the same as {@link TagDBInfo}.
+         * This methd checked if the {@link DBOpenHelper} is the same as {@link TagDBInfo}.
          *
-         * @param obj This parameter is target object. Needs extended {@link DBManagerHelper} or {@link TagDBInfo}.
+         * @param obj This parameter is target object. Needs extended {@link DBOpenHelper} or {@link TagDBInfo}.
          * @return
          */
         @Override
         public boolean equals(Object obj) {
             boolean result = false;
 
-            if (obj instanceof DBManagerHelper) {
-                result = this.mTagDBInfo.equals(((DBManagerHelper) obj).getTagDBInfo());
+            if (obj instanceof DBOpenHelper) {
+                result = this.mTagDBInfo.equals(((DBOpenHelper) obj).getTagDBInfo());
             } else if (obj instanceof TagDBInfo) {
                 result = this.mTagDBInfo.equals(obj);
             }
@@ -316,5 +316,5 @@ public abstract class TagDBManager {
             return mTagDBInfo;
         }
 
-    } // end of class DBManagerHelper
-} // end of class TagDBManager
+    } // end of class DBOpenHelper
+} // end of class TagDBFactory

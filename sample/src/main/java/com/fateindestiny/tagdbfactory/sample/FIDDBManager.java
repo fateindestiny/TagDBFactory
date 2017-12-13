@@ -13,18 +13,18 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  ****************************************************************************************************/
-package com.fateindestiny.tagdbmanager.sample;
+package com.fateindestiny.tagdbfactory.sample;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.fateindestiny.tagdbmanager.TagDBInfo;
-import com.fateindestiny.tagdbmanager.TagDBManager;
+import com.fateindestiny.tagdbfactory.TagDBFactory;
+import com.fateindestiny.tagdbfactory.TagDBInfo;
 
 /**
  * @author FateInDestiny on 2017-05-26.
  */
-public class FIDDBManager extends TagDBManager {
+public class FIDDBManager extends TagDBFactory {
     private static FIDDBManager mInstance;
 
     private FIDDBManager() {
