@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.fateindestiny.tagdbmanager.sample"
+        applicationId "com.fateindestiny.tagdbfactory.sample"
         minSdkVersion 15
         targetSdkVersion 15
         versionCode 1

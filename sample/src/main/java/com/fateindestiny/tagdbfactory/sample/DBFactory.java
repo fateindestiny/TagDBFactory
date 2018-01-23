@@ -24,21 +24,21 @@ import com.fateindestiny.tagdbfactory.TagDBInfo;
 /**
  * @author FateInDestiny on 2017-05-26.
  */
-public class FIDDBManager extends TagDBFactory {
-    private static FIDDBManager mInstance;
+public class DBFactory extends TagDBFactory {
+    private static DBFactory mInstance;
 
-    private FIDDBManager() {
+    private DBFactory() {
     }
 
-    public static FIDDBManager getInstance() {
-        if (FIDDBManager.mInstance == null) {
-            synchronized (FIDDBManager.class) {
-                if (FIDDBManager.mInstance == null) {
-                    FIDDBManager.mInstance = new FIDDBManager();
+    public static DBFactory getInstance() {
+        if (DBFactory.mInstance == null) {
+            synchronized (DBFactory.class) {
+                if (DBFactory.mInstance == null) {
+                    DBFactory.mInstance = new DBFactory();
                 }
             }
         }
-        return FIDDBManager.mInstance;
+        return DBFactory.mInstance;
     }
 
 
@@ -52,4 +52,4 @@ public class FIDDBManager extends TagDBFactory {
     }
 
 
-} // end of class FIDDBManager
+} // end of class DBFactory

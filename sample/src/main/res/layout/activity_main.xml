@@ -13,6 +13,24 @@
         android:layout_height="wrap_content"
         android:text="TagDGManager Sample" />
 
+    <EditText
+        android:id="@+id/et_column_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input 'column_0' Data" />
+
+    <EditText
+        android:id="@+id/et_column_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input 'column_1' Data" />
+
+    <EditText
+        android:id="@+id/et_column_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input 'column_2' Data" />
+
     <Button
         android:id="@+id/main_btn_insert_data"
         android:layout_width="match_parent"
