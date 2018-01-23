@@ -7,7 +7,6 @@
 `TagDBFactory` 는 안드로이드에서 SQLite의 테이블을 생성하는데 도움을 주는 라이브러리입니다. 기능은 다음과 같습니다.
 
 ## 기능
-----
 * DB 정보 클래스로 테이블을 자동으로 생성
 * 테이블 정보를 Object 클래스로 모델링
 * DB 정보 클래스를 통한 DB 버전 Helper 이벤트 수신
@@ -24,7 +23,6 @@
 
 
 ## `TagDBFactory`를 상속 받은 클래스
-----
 `TagDBFactory`는 다음과 같은 용도의 함수와 클래스가 있습니다.
 
 * 데이터 베이스 Open Helper 클래스를 관리하는 함수
@@ -60,7 +58,6 @@ class LocalSQLiteDBHelper extends TagDBFacotry {
 
 
 ## 데이터 베이스 정보 클래스
-----
 데이터 베이스 정보의 설정방법은 다음과 같습니다.
 
 1. `TagDBInfo`를 상속 받은 클래스 생성
@@ -91,7 +88,6 @@ public class TestDBInfo extends TagDBInfo {
 }
 ```
 ## 테이블 정보 클래스
-----
 `TagDBInfo`를 상속 받은 클래스에 내부 클래스를 만들어 `@TagTable` 어노테이션을 추가하면 테이블 생성시 해당 클래스를 테이블 정보를 가지고 있는 클래스로 인식합니다.
 그리고 테이블 이름은 해당 클래스 내부에 이름을 설정할 문자열 변수에 `@TagTableName` 어노테이션을 추가하면 됩니다.
 
